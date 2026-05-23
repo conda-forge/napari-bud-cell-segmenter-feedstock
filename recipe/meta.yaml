@@ -6,18 +6,18 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/napari-bud-cell-segmenter-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/napari-bud-cell-segmenter-{{ version }}.tar.gz
   sha256: 680c97f7aaa664c623e7e76bb4834797ea404c4952404643f8edd2bb7b15c9e9
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
     - setuptools >=42.0.0
     - wheel
   run:
@@ -26,7 +26,7 @@ requirements:
     - napari
     - numpy
     - pandas
-    - python >=3.8
+    - python >={{ python_min }}
     - qtpy
     - scikit-image
     - scipy
@@ -41,6 +41,7 @@ test:
   requires:
     - pip
     - pyqt
+    - python {{ python_min }}
 
 about:
   home: https://pypi.org/project/napari-bud-cell-segmenter
